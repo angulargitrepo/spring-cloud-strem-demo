@@ -16,11 +16,11 @@ public class GreetingsController {
     }
     @GetMapping("/greetings")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void greetings(@RequestParam("message") String message) {
+    public void greetings(@RequestParam("message") String message,@RequestParam("todaytemperature") String temp) {
         Greetings greetings = Greetings.builder()
                 .message(message)
                 .timestamp(System.currentTimeMillis())
-                .todaysTemp("42")
+                .todaysTemp(temp)
                 .build();
         greetingsService.sendGreeting(greetings);
     }
